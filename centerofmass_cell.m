@@ -58,35 +58,8 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%The section that segments the image into individual cells using EDGE data
-    BW=roipoly(A,tx,ty);        %BW is binary mask for the cell
-    BW=double(BW);              %Converting to double for higher precision
-   
-    SE = strel('octagon',edge_erosion);    %Edge erosion structure to ignore edge aberrations 
-    BW = imerode(BW,SE);        %Eroding the edges using the SE octagonal erosion structure
+    ANS =  cell(cell_index).ANS;
     
-    cell(cell_index).ANS=BW.*A; %Multiply element by element the BW mask to the original image. 
-    
-    %NOTE: THE VARIABLE cell(cell_index).ANS contains a single cell now
-    %correspoding to the cell_index
-    
-    %g contains the same matrix as cell(cell_index).ANS but normalized for
-    %maximum value in the individual cell
-    g = mat2gray(cell(cell_index).ANS);     %g has values from 0 to 1(1 is the maximum intensity in the cell
-    
-    
-    ANS = im2bw(g, threshold);              %The thresholding is done and the final output is stored in ANS
-    
-    ANS=cell(cell_index).ANS.*ANS;
-    
-    cell(cell_index).ANS_t= uint8(ANS);
-    %Just to be clear, ANS contains the pixels which lie in the thresholded
-    %range and this is the variable(the matrix) that we will operate on in
-    %this script.
-    
-cell(cell_index).ANS=uint8(cell(cell_index).ANS); %we can now use this to plot whatever cell we want!
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

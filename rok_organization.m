@@ -56,7 +56,7 @@ end
  %% this segment of the code fits a pokynomial to the plot of Rok intensity and then plots the polynomial on to the Rok plot
 area=[];
 
-for cell_index=1:cell_number, %%which cell we are looking at
+for cell_index=cell_length, %%which cell we are looking at
       if(~isnan(datax{time,1,cell_index})) %IN EVERY LOOP OVER CELLS USE NAN CHECK
 
     
@@ -72,7 +72,7 @@ for cell_index=1:cell_number, %%which cell we are looking at
     cell_rok(cell_index).mean = cell_rok(cell_index).mean/(rmx) ; 
     cell_rok(cell_index).mean = (2/cell_rok(cell_index).mean(1,1))*cell_rok(cell_index).mean ;
 
-   
+   E(time).cell(cell_index).mean_noirmalized=cell_rok(cell_index).mean;
   
 
   %%
@@ -95,7 +95,7 @@ idx = find(y1 - y2 < eps, 1,'last'); %// Index of coordinate in array
 px = x(idx);
 py = y1(idx);  
 %
-        plot(x/15,y,'o',x/15,f,'-')
+        %plot(x/15,y,'o',x/15,f,'-')
         %ylim([0 3]);
     end
 
@@ -117,7 +117,7 @@ idx = find(y1 - y2 < eps, 1,'last'); %// Index of coordinate in array, last inte
 px = x(idx);
 py = y1(idx);
 %
-       plot(x,y,'o',x,f,'-')
+       %plot(x,y,'o',x,f,'-')
        %ylim([0 3]);
     end
 hold on

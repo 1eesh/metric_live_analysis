@@ -1,15 +1,15 @@
 
 %%
 %load('spn1_70.mat')
-  time=99;
+  time=60;
   
-    start_cell=56;
+    start_cell=5;
     end_cell=start_cell;
  
     %%ROK PLOT
     cell=cell_rok;
     rok=1;
-    run('/Users/eesh/Desktop/image_analysis/plot_radial.m');
+    run('/Users/eesh/Desktop/metric_live_analysis/plot_radial.m');
     
 
     %%ROK PLOT

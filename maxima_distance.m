@@ -31,7 +31,7 @@ AVERAGE_spn=[];
 %A_hold=imread('RokProj_z008_c001.tif');
 imshow(A_hold)
 hold on;
-for cell_index=1:cell_number, %this mega for loop calculates the COM for all the cells which are taken from the edge output
+for cell_index=cell_length, %this mega for loop calculates the COM for all the cells which are taken from the edge output
  
  if(~isnan(datax{time,1,cell_index}))
      
@@ -84,23 +84,7 @@ for cell_index=1:cell_number, %this mega for loop calculates the COM for all the
  end%END NAN CHECK
 
 end
-    subplot(2,2,1)
- boxplot(.1417*AVERAGE_spn)
-     title('SPN Mutant')
-     %ylabel('Microns');
-     ylim([0 16]);
-    subplot(2,2,3)
-    
-    %%plotting the histogram
-hist(.1417*AVERAGE_spn)
-     title('SPN Mutant')
-      h = findobj(gca,'Type','patch');
-set(h,'FaceColor',[0 .5 .5],'EdgeColor','w');
-    ylim([0 90])
-     hold on 
-
-     hold on   
-
+ 
 
 %%
 %%HERE WE JUST DO THE SAME FOR WILD TYPE
@@ -109,7 +93,7 @@ set(h,'FaceColor',[0 .5 .5],'EdgeColor','w');
 
 AVERAGE_wildtype=[];
 
-for cell_index=1:cell_number, %this mega for loop calculates the COM for all the cells which are taken from the edge output
+for cell_index=cell_length, %this mega for loop calculates the COM for all the cells which are taken from the edge output
  
  if(~isnan(datax{time,1,cell_index}))
 
@@ -146,24 +130,6 @@ end
 AVERAGE_wildtype;
 
 %%
-
-
-  subplot(2,2,2)
- boxplot(.106*AVERAGE_wildtype)
-     title('Wild Type')
-     ylabel('Microns');
-     ylim([0 16])
-     hold on 
-
-%%
-%%PLOT histogram
- subplot(2,2,4)
- hist(.106*AVERAGE_wildtype)
-     title('Wild Type')
-     ylim([0 100]);
-    h = findobj(gca,'Type','patch');
-set(h,'FaceColor',[0 .5 .5],'EdgeColor','w');
-     hold on 
 
      close all;
      
