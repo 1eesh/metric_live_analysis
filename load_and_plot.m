@@ -1,0 +1,93 @@
+
+%%
+%load('spn1_70.mat')
+  time=99;
+  
+    start_cell=56;
+    end_cell=start_cell;
+ 
+    %%ROK PLOT
+    cell=cell_rok;
+    rok=1;
+    run('/Users/eesh/Desktop/image_analysis/plot_radial.m');
+    
+
+    %%ROK PLOT
+   % cell=cell_rok;
+   % rok=1;
+   % run('/Users/eesh/Desktop/image_analysis/plot_radial.m');
+    
+    
+
+%%
+    
+%%PLOTTING the AVERAGE intensity Distribution for The Cell
+if 1,
+k=waitforbuttonpress;
+    hold off;
+%%   
+%load('spn3_40_actin.mat')
+
+wild=1;
+%load('cont4bis_95.mat')
+%%PLOT FOR MYOSIN AVERAGE IVER CELLS 
+ cell=cell_myosin;
+ rok=0;
+ flag=1;
+ run('/Users/eesh/Desktop/metric_live_analysis/averageovercells.m');
+ wild_myosin=average_C(1:25,:);
+ 
+  
+%%PLOT FOR ROK AVERAGE OVER CELLS 
+ %{
+cell=cell_mbs;
+rok=0;
+flag=0;
+run('/Users/eesh/Desktop/image_analysis/averageovercells.m'); 
+wild_mbs=average_C(1:25,:);
+  
+ %} 
+    
+  %%PLOT FOR ROK AVERAGE OVER CELLS 
+ 
+cell=cell_rok;
+rok=1;
+
+run('/Users/eesh/Desktop/metric_live_analysis/averageovercells.m'); 
+wild_rok=average_C(1:25,:);
+  
+
+  
+rokmyo_corr=xcov(wild_myosin,wild_rok,0,'coeff')
+%rokmbs_corr=xcov(wild_mbs,wild_rok,0,'coeff')
+title(strcat('Average over all the cells for Wild Type (PCC for Rok and Myoson =  ',num2str(rokmyo_corr),')'));% (PCC for Rok and Myoson =  ',num2str(rokmbs_corr),')'));
+ xlabel('Distance from Rok focus(microns)');
+ ylabel('Normalized Intensity(between Max and Min for Individual Cells)');
+ylim([0 1.1]);
+xlim([0 2]);
+ 
+ hold on;
+ 
+ %%THIS IS FOR SPN(average thing
+ 
+ %{
+ wild=0;
+ %load('spn_rokxmyosin.mat')
+%%PLOT FOR MYOSIN AVERAGE IVER CELLS 
+ cell=cell_myosin;
+    rok=0;
+  subplot(2,1,2)   
+ run('/Users/eesh/Desktop/image_analysis/averageovercells.m');
+  spn_myosin=average_C(1:30,:);
+ title('Average over all the cells for Spn Mutant');
+%%PLOT FOR ROK AVERAGE OVER CELLS 
+ cell=cell_rok;
+rok=1;
+
+ run('/Users/eesh/Desktop/image_analysis/averageovercells.m'); 
+ spn_rok=average_C(1:30,:);
+ 
+ SPN_corr=xcov(spn_myosin,spn_rok,0,'coeff')
+ xlabel(strcat('Peason correlation coefficient for the Average plots = ',num2str(SPN_corr)));
+ %}
+end
